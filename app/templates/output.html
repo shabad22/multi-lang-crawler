@@ -1,0 +1,12 @@
+<select id="my_selection">
+  {% for link in links %}
+  <option href="{{ link }}">{{ link }}</option>
+  {% endfor %}
+</select>
+<p>{{data}}</p>
+<script>
+  document.getElementById("my_selection").onchange = function () {
+    window.location.href =
+      this.children[this.selectedIndex].getAttribute("href");
+  };
+</script>
