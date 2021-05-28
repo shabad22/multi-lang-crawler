@@ -30,3 +30,8 @@ class Crawl():
             #     for inf in soup.find_all(tag):
             #         self.globaltext += inf.text + "%@%"
         return self.globaltext
+
+def singleCrawl(link = link):
+    fetched_data = requests.get(link, verify=  False)
+    soup = BeautifulSoup(fetched_data.content, 'html.parser', from_encoding="iso-8859-1")
+    return soup.text
