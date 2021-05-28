@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 langdetect = "*"
 textblob = "*"
+flask = "*"
+python-dotenv = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.7"

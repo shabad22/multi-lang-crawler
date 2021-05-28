@@ -8,7 +8,7 @@ class Crawl():
     def __init__(self, link = link):
         self.link = link
         self.fetched_data = requests.get(link)
-        self.soup = BeautifulSoup(self.fetched_data.content, 'html.parser')
+        self.soup = BeautifulSoup(self.fetched_data.content, 'html.parser', from_encoding="iso-8859-1")
     
     def fetch_links(self):
         tempSublinks = [sublink['href'] for sublink in self.soup.find_all('a', href=True)]
@@ -23,11 +23,10 @@ class Crawl():
         self.globaltext = ''
         for sublink in set(self.sublinks):
             htmlcontent = requests.get(sublink)
-            soup = BeautifulSoup(htmlcontent.content, 'html.parser')
+            soup = BeautifulSoup(htmlcontent.content, 'html.parser',from_encoding="iso-8859-1")
             tags = list(set([tag.name for tag in soup.find_all()]))
-            for tag in tags:
-                for inf in soup.find_all(tag):
-                    self.globaltext += inf.text + "%@%"
-            return self.globaltext
-
-                    
+            self.globaltext += soup.text + "%@%"
+            # for tag in tags:
+            #     for inf in soup.find_all(tag):
+            #         self.globaltext += inf.text + "%@%"
+        return self.globaltext

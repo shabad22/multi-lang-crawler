@@ -1,8 +1,6 @@
 # from textblob import TextBlob
 import re
 from langdetect import detect
-from langdetect import DetectorFactory
-DetectorFactory.seed = 0
 
 
 def SentenceCleaner(line):
@@ -36,6 +34,4 @@ def tokenizer(data):
 
 def clean(data):
     output = tokenizer(' '.join([i for i in list(data)]))
-    # print(lang_codes)
-    # print(" ".join([detect(token) for token in lines.split(" ")]))
     return output
